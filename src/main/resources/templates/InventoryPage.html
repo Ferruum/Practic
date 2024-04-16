@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Management</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+</head>
+<body>
+<button onclick="goBack()">Вернуться на главную</button>
+<script>
+    function goBack() {
+        window.location.href = "http://localhost:8080/";
+    }
+</script>
+<h2>Товары</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Название</th>
+        <th>Тип</th>
+        <th>Размер лезвия</th>
+        <th>Цена</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="inventory: ${inventory}">
+        <td th:text="${inventory.id}"></td>
+        <td th:text="${inventory.name}"></td>
+        <td th:text="${inventory.type}"></td>
+        <td th:text="${inventory.bladelength}"></td>
+        <td th:text="${inventory.price}"></td>
+        <td>
+            <a th:href="@{/editInventory/{id}(id=${inventory.id})}">Редактировать</a> |
+            <a th:href="@{/deleteInventory/{id}(id=${inventory.id})}">Удалить</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>Добваить товар</h3>
+<form th:action="@{/addInventory}" method="post">
+    <label>Название: <input class="form-control" type="text" name="name"></label>
+    <label>Тип: <input class="form-control" type="text" name="type"></label>
+    <label>Размер лезвия: <input class="form-control" type="text" name="bladelength"></label>
+    <label>Цена: <input class="form-control" type="text" name="price"></label>
+    <button type="submit" class="operator btn btn-info">Добваить</button>
+</form>
+</body>
+</html>

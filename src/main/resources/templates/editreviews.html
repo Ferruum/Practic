@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Person</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+<body>
+
+<button onclick="goBack()">Назад</button>
+<script>
+    function goBack() {
+        window.location.href = "http://localhost:8080/reviews";
+    }
+</script>
+<h2>Редактировать отзыв</h2>
+
+<!-- Edit Product Form -->
+<form th:action="@{/editreviews/{id}(id=${reviews.id})}" method="post">
+    <input type="hidden" name="id" th:value="${reviews.id}">
+    <label>Название ровара: <input class="form-control" type="text" name="namecut" th:value="${reviews.namecut}"></label>
+    <label>Имя клиента: <input type="text" class="form-control" name="clientname" th:value="${reviews.clientname}"></label>
+    <label>Оценка: <input type="text" class="form-control" name="raiting" th:value="${reviews.raiting}"></label>
+    <label>Отзыв: <input type="text" class="form-control" name="comment" th:value="${reviews.comment}"></label>
+    <button type="submit" class="operator btn btn-info">Сохранить</button>
+</form>
+</body>
+</html>

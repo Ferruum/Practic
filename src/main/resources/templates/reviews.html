@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Management</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+</head>
+<body>
+<button onclick="goBack()">Вернуться на главную</button>
+<script>
+  function goBack() {
+    window.location.href = "http://localhost:8080/";
+  }
+</script>
+<h2>Отзывы</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Название ровара</th>
+    <th>Имя клиента</th>
+    <th>Оценка</th>
+    <th>Отзыв</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="review: ${reviews}">
+    <td th:text="${review.id}"></td>
+    <td th:text="${review.namecut}"></td>
+    <td th:text="${review.clientname}"></td>
+    <td th:text="${review.raiting}"></td>
+    <td th:text="${review.comment}"></td>
+    <td>
+      <a th:href="@{/editreviews/{id}(id=${review.id})}">Редакрировать</a> |
+      <a th:href="@{/deletereviews/{id}(id=${review.id})}">Удалить</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<h3>Добавить отзыв</h3>
+<form th:action="@{/addreviews}" method="post">
+  <label>Название ровара: <input class="form-control" type="text" name="namecut"></label>
+  <label>Имя клиента: <input class="form-control" type="text" name="clientname"></label>
+  <label>Оценка: <input class="form-control" type="text" name="raiting"></label>
+  <label>Отзыв: <input class="form-control" type="text" name="comment"></label>
+  <button type="submit" class="operator btn btn-info">Добавить</button>
+</form>
+</body>
+</html>

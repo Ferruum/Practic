@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Management</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+</head>
+<body>
+<button onclick="goBack()">Вернуться на главную</button>
+<script>
+  function goBack() {
+    window.location.href = "http://localhost:8080/";
+  }
+</script>
+<h2>Акции</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Название акции</th>
+    <th>Длительность</th>
+    <th>Условия</th>
+    <th>Промокод</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="promotions: ${promotion}">
+    <td th:text="${promotions.id}"></td>
+    <td th:text="${promotions.promotionname}"></td>
+    <td th:text="${promotions.promotiontime}"></td>
+    <td th:text="${promotions.conditions}"></td>
+    <td th:text="${promotions.pronocode}"></td>
+    <td>
+      <a th:href="@{/editpromotion/{id}(id=${promotions.id})}">Редактировать</a> |
+      <a th:href="@{/deletepromotion/{id}(id=${promotions.id})}">Удалить</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<h3>Добавить акцию</h3>
+<form th:action="@{/addpromotion}" method="post">
+  <label>Название акции: <input class="form-control" type="text" name="promotionname"></label>
+  <label>Длительность: <input class="form-control" type="text" name="promotiontime"></label>
+  <label>Условия: <input class="form-control" type="text" name="conditions"></label>
+  <label>Промокод: <input class="form-control" type="text" name="pronocode"></label>
+  <button type="submit" class="operator btn btn-info">Добавить</button>
+</form>
+</body>
+</html>

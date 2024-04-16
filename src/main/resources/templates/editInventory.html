@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+</head>
+
+
+<body>
+<button onclick="goBack()">Назад</button>
+<script>
+    function goBack() {
+        window.location.href = "http://localhost:8080/inventoryPage";
+    }
+</script>
+<h1>Редактировать тип товара</h1>
+<form th:action="@{/editInventory/{id}(id=${inventory.id})}" method="post">
+    <input type="hidden" name="id" th:value="${inventory.id}">
+    <label>Название: <input class="form-control" type="text" name="name" th:value="${inventory.name}"></label>
+    <label>Тип: <input type="text" class="form-control" name="type" th:value="${inventory.type}"></label>
+    <label>Размер лезвия: <input type="text" class="form-control" name="bladelength" th:value="${inventory.bladelength}"></label>
+    <label>Цена: <input type="text" class="form-control" name="price" th:value="${inventory.price}"></label>
+    <button type="submit" class="operator btn btn-info">Сохранить</button>
+</form>
+</body>
+</html>

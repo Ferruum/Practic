@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Management</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+</head>
+<body>
+<button onclick="goBack()">Вернуться на главную</button>
+<script>
+  function goBack() {
+    window.location.href = "http://localhost:8080/";
+  }
+</script>
+<h2>Клиенты</h2>
+
+<table class="table table-hover">
+  <thead>
+  <tr class="table-secondary">
+    <th>ID</th>
+    <th>Имя</th>
+    <th>Почта</th>
+    <th>Пароль</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="person : ${persons}">
+    <td th:text="${person.id}"></td>
+    <td th:text="${person.username}"></td>
+    <td th:text="${person.email}"></td>
+    <td th:text="${person.password}"></td>
+    <td>
+      <a th:href="@{/editPerson/{id}(id=${person.id})}">Редактировать</a> |
+      <a th:href="@{/deletePerson/{id}(id=${person.id})}">Удалить</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<h3>Добавить человека</h3>
+<form th:action="@{/addPerson}" method="post">
+  <label>Имя: <input class="form-control" type="text" name="username"></label>
+  <label>Почта: <input class="form-control" type="text" name="email"></label>
+  <label>Пароль: <input class="form-control" type="text" name="password"></label>
+  <button type="submit" class="operator btn btn-info">Добавить</button>
+</form>
+</body>
+</html>

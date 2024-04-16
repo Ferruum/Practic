@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Person</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+<body>
+<button onclick="goBack()">Назад</button>
+<script>
+  function goBack() {
+    window.location.href = "http://localhost:8080/promotion";
+  }
+</script>
+<h2>Редактирование акции</h2>
+
+<!-- Edit Product Form -->
+<form th:action="@{/editpromotion/{id}(id=${promotion.id})}" method="post">
+  <input type="hidden" name="id" th:value="${promotion.id}">
+  <label>Название акции: <input class="form-control" type="text" name="promotionname" th:value="${promotion.promotionname}"></label>
+  <label>Длительность: <input type="text" class="form-control" name="promotiontime" th:value="${promotion.promotiontime}"></label>
+  <label>Условия: <input type="text" class="form-control" name="conditions" th:value="${promotion.conditions}"></label>
+  <label>Промокод: <input type="text" class="form-control" name="pronocode" th:value="${promotion.pronocode}"></label>
+  <button type="submit" class="operator btn btn-info">Сохранить</button>
+</form>
+</body>
+</html>

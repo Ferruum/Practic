@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+<body>
+<button onclick="goBack()">Назад</button>
+<script>
+    function goBack() {
+        window.location.href = "http://localhost:8080/employee";
+    }
+</script>
+<h1>Редактирование сотрудника</h1>
+
+<!-- Edit Product Form -->
+<form th:action="@{/editemployee/{id}(id=${employee.id})}" method="post">
+    <input type="hidden" name="id" th:value="${employee.id}">
+    <label>Имя: <input class="form-control" type="text" name="name" th:value="${employee.name}"></label>
+    <label>Должность: <input type="text" class="form-control" name="dolznost" th:value="${employee.dolznost}"></label>
+    <label>Зарплата: <input type="text" class="form-control" name="zp" th:value="${employee.zp}"></label>
+    <label>Премия: <input type="text" class="form-control" name="premiya" th:value="${employee.premiya}"></label>
+    <button type="submit" class="operator btn btn-info">Сохранить</button>
+    <br>
+</form>
+
+</body>
+</html>

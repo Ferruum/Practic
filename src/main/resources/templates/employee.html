@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Management</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+</head>
+<body>
+<button onclick="goBack()">Вернуться на главную</button>
+<script>
+    function goBack() {
+        window.location.href = "http://localhost:8080/";
+    }
+</script>
+<h2>Сотрудники</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Должность</th>
+        <th>Зарплата</th>
+        <th>Премия</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employe: ${employee}">
+        <td th:text="${employe.id}"></td>
+        <td th:text="${employe.name}"></td>
+        <td th:text="${employe.dolznost}"></td>
+        <td th:text="${employe.zp}"></td>
+        <td th:text="${employe.premiya}"></td>
+        <td>
+            <a th:href="@{/editemployee/{id}(id=${employe.id})}">Редактировать</a> |
+            <a th:href="@{/deleteemployee/{id}(id=${employe.id})}">Удалить</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>Добавить нового сотрудника</h3>
+<form th:action="@{/addpemployee}" method="post">
+    <label>Имя: <input class="form-control" type="text" name="name"></label>
+    <label>Должность: <input class="form-control" type="text" name="dolznost"></label>
+    <label>Зарплата: <input class="form-control" type="text" name="zp"></label>
+    <label>Премия: <input class="form-control" type="text" name="premiya"></label>
+    <button type="submit" class="operator btn btn-info">Добавить</button>
+</form>
+</body>
+</html>

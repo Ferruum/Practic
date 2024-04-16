@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Person</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+<body>
+<button onclick="goBack()">Назад</button>
+<script>
+    function goBack() {
+        window.location.href = "http://localhost:8080/Persons";
+    }
+</script>
+
+<h2>Редактирование пользователя</h2>
+
+<!-- Edit Product Form -->
+<form th:action="@{/editPerson/{id}(id=${person.id})}" method="post">
+    <input type="hidden" name="id" th:value="${person.id}">
+    <label>Имя: <input class="form-control" type="text" name="username" th:value="${person.username}"></label>
+    <label>Почта: <input type="text" class="form-control" name="email" th:value="${person.email}"></label>
+    <label>Пароль: <input type="text" class="form-control" name="password" th:value="${person.password}"></label>
+    <button type="submit" class="operator btn btn-info">Save</button>
+</form>
+</body>
+</html>
